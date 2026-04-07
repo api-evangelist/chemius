@@ -3,9 +3,9 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/chemius/refs/heads/main/apis.yml
 name: Chemius
 tags:
+  - AI
   - Chemicals
   - Chemists
-  - AI
   - Research
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -22,8 +22,8 @@ apis:
   - aid: chemius:chemius
     name: Chemius API
     tags:
-      - Chemicals
       - AI
+      - Chemicals
     humanURL: https://www.chemius.net/chemius-api/
     properties:
       - url: https://www.chemius.net/chemius-api/
