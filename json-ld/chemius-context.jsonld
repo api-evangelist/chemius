@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "chemius": "https://www.chemius.net/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "SafetyDataSheet": {
+      "@id": "chemius:SafetyDataSheet",
+      "@context": {
+        "sdsId": "chemius:sdsId",
+        "productName": "schema:name",
+        "language": "chemius:language",
+        "version": "schema:version",
+        "issueDate": {
+          "@id": "dcterms:issued",
+          "@type": "xsd:date"
+        },
+        "regulatoryFramework": "chemius:regulatoryFramework",
+        "hazardClass": "chemius:hazardClass"
+      }
+    },
+
+    "TechnicalDataSheet": {
+      "@id": "chemius:TechnicalDataSheet",
+      "@context": {
+        "tdsId": "chemius:tdsId",
+        "productName": "schema:name",
+        "language": "chemius:language",
+        "version": "schema:version"
+      }
+    },
+
+    "HazardLabel": {
+      "@id": "chemius:HazardLabel",
+      "@context": {
+        "labelId": "chemius:labelId",
+        "ufi": "chemius:ufi",
+        "qrCode": "chemius:qrCode",
+        "pictograms": "chemius:pictograms",
+        "signalWord": "chemius:signalWord",
+        "hazardStatements": "chemius:hazardStatements",
+        "precautionaryStatements": "chemius:precautionaryStatements"
+      }
+    },
+
+    "ChemicalProduct": {
+      "@id": "chemius:ChemicalProduct",
+      "@context": {
+        "productId": "schema:productID",
+        "name": "schema:name",
+        "casNumber": "chemius:casNumber",
+        "ecNumber": "chemius:ecNumber",
+        "manufacturer": "schema:manufacturer"
+      }
+    }
+  }
+}
