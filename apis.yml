@@ -14,7 +14,7 @@ description: >-
 type: Index
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: >-
   https://raw.githubusercontent.com/api-evangelist/chemius/refs/heads/main/apis.yml
 tags:
@@ -44,7 +44,7 @@ apis:
       retrieval, and version control. Supports multilingual SDS
       generation aligned with CLP 1272/2008, REACH 1907/2006, and GHS
       formats.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - Compliance
@@ -58,7 +58,7 @@ apis:
     description: >-
       API for generating and retrieving Technical Data Sheets (TDS) for
       chemical products, including version control and translation.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - Compliance
@@ -73,7 +73,7 @@ apis:
       API for generating ADR (European Agreement concerning the
       International Carriage of Dangerous Goods by Road) transport
       documentation for chemical shipments.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - ADR
@@ -88,7 +88,7 @@ apis:
       API for integrating Chemius product, SDS, TDS, and label data with
       enterprise ERP systems for synchronized chemical product
       information.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - ERP
@@ -101,7 +101,7 @@ apis:
     description: >-
       API for generating regulatory-compliant chemical product labels
       with QR codes, hazard pictograms, and multilingual content.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - Labels
@@ -115,7 +115,7 @@ apis:
     description: >-
       API exposing chemical product data, SDSs, and TDSs for embedding
       in e-commerce experiences and customer-facing web shops.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - E-Commerce
@@ -128,7 +128,7 @@ apis:
     description: >-
       API for rendering Chemius SDSs, TDSs, labels, and other compliance
       documents as PDF artifacts for distribution and archival.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.chemius.net/chemius-api/
     tags:
       - PDF
