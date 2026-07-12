@@ -137,6 +137,8 @@ apis:
       - type: Documentation
         url: https://www.chemius.net/chemius-api/
 common:
+  - type: DomainSecurity
+    url: security/chemius-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/chemius
   - type: Website
@@ -186,6 +188,8 @@ common:
       - name: US OSHA Hazard Communication
       - name: UFI
       - name: ISO/IEC 27001
+  - url: https://www.chemius.net/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
