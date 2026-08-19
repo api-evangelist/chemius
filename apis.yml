@@ -47,7 +47,7 @@ tags:
   - TDS
 created: '2025-03-01'
 modified: '2026-04-23'
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
   - aid: chemius:sds-api
     name: Chemius Safety Data Sheet API
