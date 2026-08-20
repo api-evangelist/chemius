@@ -31,6 +31,22 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/chemius/refs/heads/main/apis.yml
 tags:
   - ADR
+  - Artificial Intelligence
+  - Chemicals
+  - Chemists
+  - Compliance
+  - GHS
+  - Hazard Communication
+  - Labels
+  - REACH
+  - Regulatory
+  - Research
+  - Safety Data Sheets
+  - Software-as-a-Service
+  - SDS
+  - TDS
+tags_raw:
+  - ADR
   - AI
   - Chemicals
   - Chemists
