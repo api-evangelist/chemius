@@ -1,0 +1,112 @@
+specification: API Commons Well-Known
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: probed
+source: live HTTPS probes of /.well-known/* on every host in the record
+description: >-
+  Probe record for RFC 8615 well-known discovery documents across every host
+  Chemius is known to serve: the marketing/docs host (www.chemius.net), the
+  apex (chemius.net), the application host (my.chemius.net) and the sign-in
+  host (app.chemius.net). No well-known document is served on any host. No
+  WellKnown or SecurityTxt pointer is wired in apis.yml, because a recorded
+  absence is not a presence.
+note: >-
+  The apex chemius.net answered 503 with a maintenance page reading
+  "app.chemius.net / app.allchemist.net is temporarily..." for every path, so
+  the apex is not a distinct discovery surface — it fronts the same
+  application estate (BENS Consulting also operates the Allchemist brand).
+  www.chemius.net is WordPress and returns its themed 404 page. my.chemius.net
+  and app.chemius.net return Apache 404s at /.well-known/* while returning a
+  200 SPA shell at ordinary paths, so the SPA catch-all does NOT extend to
+  /.well-known/ — these 404s are real, not soft.
+hosts:
+  - host: www.chemius.net
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+  - host: chemius.net
+    note: apex answered 503 (maintenance page) for every path
+    documents:
+      - path: /.well-known/security.txt
+        status: 503
+      - path: /.well-known/openid-configuration
+        status: 503
+      - path: /.well-known/oauth-authorization-server
+        status: 503
+      - path: /.well-known/oauth-protected-resource
+        status: 503
+      - path: /.well-known/api-catalog
+        status: 503
+      - path: /.well-known/ai-plugin.json
+        status: 503
+      - path: /.well-known/agent-card.json
+        status: 503
+      - path: /.well-known/agent.json
+        status: 503
+      - path: /.well-known/aauth-resource.json
+        status: 503
+  - host: my.chemius.net
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+  - host: app.chemius.net
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+summary:
+  hosts_probed: 4
+  paths_probed: 36
+  documents_served: 0
+  security_txt: false
+  api_catalog: false
+  agent_card: false

@@ -1,0 +1,71 @@
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.chemius.net/api/ and all seven per-API pages on www.chemius.net;
+  /.well-known/* probes on www.chemius.net, chemius.net, my.chemius.net, app.chemius.net
+description: >-
+  Authentication posture for the Chemius API estate, established by reading every public Chemius
+  API page and probing every discovery path. The result is a measured absence: Chemius documents no
+  authentication mechanism publicly. No API key, token, OAuth flow, mTLS or basic-auth scheme is
+  named anywhere on the public site, and no reference is reachable without a sales call.
+documented: false
+schemes: []
+schemes_note: >-
+  Zero securitySchemes can be derived, because no OpenAPI, WSDL or GraphQL SDL is published. Zero
+  can be searched, because every per-API page ends at "Book a call & ask for the API documentation"
+  rather than at a reference.
+no_authentication_pointer_note: >-
+  No `type: Authentication` pointer is wired in apis.yml. The scorer's authentication_documented
+  check asserts the PROVIDER documents authentication; Chemius does not, and emitting the pointer
+  over this file would turn a recorded absence into a false claim.
+discovery_probes:
+  - url: https://www.chemius.net/.well-known/openid-configuration
+    status: 404
+  - url: https://www.chemius.net/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://my.chemius.net/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://my.chemius.net/.well-known/oauth-protected-resource
+    status: 404
+  - url: https://app.chemius.net/.well-known/openid-configuration
+    status: 404
+observed_surface:
+  api_host_candidate: https://my.chemius.net/api
+  evidence:
+    - url: https://my.chemius.net/api/asset/image/e387e2e59f8b44e2c715d844a3b3c5ab.gif
+      status: 200
+      content_type: image/gif
+      note: >-
+        Referenced from the provider's own public page
+        https://www.chemius.net/chemius-api-integration-example/api-product1/ . An unauthenticated
+        GET returns the real asset, so at least one read path under /api/ is anonymous.
+    - url: https://my.chemius.net/api/
+      status: 404
+      note: >-
+        Returns a CodeIgniter "404 Page Not Found" router page, not the Angular SPA shell — which
+        is what establishes that a real API router lives at this path rather than a catch-all.
+  caveat: >-
+    This is the application's own backend, reached by the Chemius single-page app. Chemius does NOT
+    state it as the base URL of the seven commercial APIs, so it is recorded here as an observation
+    and deliberately NOT written into apis.yml baseURL. Guessing a base from an internal app route
+    is exactly the error this pipeline forbids.
+account_authentication:
+  surface: https://my.chemius.net/login
+  method: email/username + password
+  mfa_documented: false
+  sso_documented: false
+  note: >-
+    Human sign-in to the Chemius application. Registration is self-serve and free
+    (https://my.chemius.net/register), but the pricing page states paid accounts are "manually
+    reviewed" before activation, so API-bearing accounts are not self-serve.
+provisioning:
+  self_serve: false
+  path: >-
+    Buy a paid plan, then "Request Add-on" per API, then "Book a call & ask for the API
+    documentation". API credentials are issued through a sales and onboarding motion; no key is
+    obtainable from the website.
+  evidence: https://www.chemius.net/safety-data-sheet-api/

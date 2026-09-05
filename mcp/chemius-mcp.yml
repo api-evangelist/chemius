@@ -1,0 +1,109 @@
+specification: API Commons MCP
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: derived
+status: candidate
+source: >-
+  Derived from capability prose on https://www.chemius.net/api/ and the seven per-API pages. No
+  OpenAPI exists to derive operations from, so every tool below is a capability name taken from the
+  provider's own description of what each API does — not an operationId, and not a contract.
+description: >-
+  Chemius ships NO Model Context Protocol server. This manifest is a candidate: a sketch of what an
+  MCP server over the seven Chemius APIs would expose, recorded so the absence is countable and so
+  the shape is on file if Chemius ever publishes one. It must never be read as an agent surface
+  that exists.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+  note: >-
+    No hosted MCP endpoint and no stdio package. Searched npm, PyPI, RubyGems, crates.io and GitHub
+    for a Chemius MCP server on 2026-09-05: zero results. No /.well-known/ discovery document is
+    served on any Chemius host. There is nothing for an MCP client to POST to and nothing for a
+    human to install.
+searched:
+  - registry: npm
+    query: chemius
+    results: 0
+  - registry: github
+    query: chemius
+    results: 0
+    note: Three unrelated repositories; none belongs to Chemius or BENS Consulting.
+  - probe: https://www.chemius.net/.well-known/ai-plugin.json
+    status: 404
+  - probe: https://my.chemius.net/.well-known/ai-plugin.json
+    status: 404
+blocking_gap: >-
+  A Chemius MCP server is not buildable from public information today. There is no published
+  contract, no documented authentication, no base URL and no parameter names — the reference is
+  handed over only after a sales call. The candidate tools below carry no inputSchema for exactly
+  that reason: inventing one would be fabricating the parameters of a commercial API.
+tools:
+  - name: get_safety_data_sheet
+    api: chemius:sds-api
+    description: >-
+      Retrieve a specific SDS as a Chemius permalink for a product, for embedding in an ERP or CRM
+      record.
+    inputSchema: null
+    source: https://www.chemius.net/api/
+  - name: list_safety_data_sheets
+    api: chemius:sds-api
+    description: Retrieve a list of SDS permalinks based on criteria.
+    inputSchema: null
+    source: https://www.chemius.net/api/
+  - name: list_changed_safety_data_sheets
+    api: chemius:sds-api
+    description: >-
+      Identify which products have had SDS changes — the daily poll an ERP runs to drive customer
+      re-notification.
+    inputSchema: null
+    source: https://www.chemius.net/safety-data-sheet-api/
+  - name: get_clp_classification
+    api: chemius:web-shop-api
+    description: >-
+      Retrieve hazard statements, precautionary statements, hazard pictograms and the signal word
+      for a product, for a web shop or downstream system.
+    inputSchema: null
+    source: https://www.chemius.net/api/
+  - name: get_technical_data_sheet_section
+    api: chemius:tds-api
+    description: >-
+      Retrieve a TDS section by purpose (description, instructions, ...) in a requested language,
+      returning section layout, formatted content and the Chemius style.
+    inputSchema: null
+    source: https://www.chemius.net/technical-data-sheet-api-tds-api/
+  - name: generate_adr_transport_document
+    api: chemius:adr-api
+    description: >-
+      Submit a product list with quantities, calculate ADR points and return a compliant transport
+      document as PDF.
+    inputSchema: null
+    consequential: true
+    source: https://www.chemius.net/adr-api/
+  - name: get_label_content
+    api: chemius:label-api
+    description: >-
+      Retrieve structured, multilingual labelling information for delivery to labelling software or
+      an ERP.
+    inputSchema: null
+    source: https://www.chemius.net/label-api/
+  - name: sync_erp_product_data
+    api: chemius:erp-api
+    description: >-
+      Retrieve hazard information (H and P phrases, pictograms), physical and chemical properties
+      and transport data (UN numbers, labels, classes) for synchronisation into an ERP.
+    inputSchema: null
+    source: https://www.chemius.net/erp-api/
+  - name: get_document_pdf
+    api: chemius:pdf-api
+    description: >-
+      Generate or retrieve the current PDF rendering of an SDS, TDS or Safety Instruction.
+    inputSchema: null
+    source: https://www.chemius.net/pdf-api/
+tool_count: 9
+tools_with_schema: 0

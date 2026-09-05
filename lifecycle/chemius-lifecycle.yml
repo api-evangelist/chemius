@@ -1,0 +1,76 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.chemius.net/api/ , https://www.chemius.net/our-pricing/ ,
+  https://www.chemius.net/terms-of-use/ , https://my.chemius.net/ , https://status.chemius.net/
+description: >-
+  Lifecycle posture for the Chemius API estate. Chemius publishes no API versioning scheme, no
+  deprecation policy, no sunset commitment, no SLA and no status page. What it does publish is a
+  product-level commitment that regulatory change is absorbed inside Chemius rather than pushed to
+  the caller, and a dated commercial change to terms and pricing.
+versioning:
+  scheme: undocumented
+  api_version_in_path: unknown
+  note: >-
+    "Smart versioning" and "Track changes" are Chemius features that version the SAFETY DATA SHEET
+    document, not the API. No API version identifier is published on any page, and no reference is
+    reachable without a sales call. Do not read the product's document versioning as API versioning.
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: unknown
+  note: >-
+    No deprecation or sunset policy exists on any public page. No Deprecation pointer is wired in
+    apis.yml, because there is no policy to point at.
+regulatory_change_absorption:
+  documented: true
+  evidence: https://www.chemius.net/adr-api/
+  note: >-
+    This is the closest thing Chemius publishes to a compatibility commitment, and it is a real
+    one: "This entire process is managed within Chemius, ensuring that the latest ADR rules are
+    applied without requiring updates to your ERP." The same promise is made for SDS content on the
+    SDS API page. The caller is insulated from ADR/CLP rule changes, which in this market is the
+    dominant source of breaking change.
+sla:
+  published: false
+  note: >-
+    Support allowances are sold by the hour per tier (1h/month technical support on Pro Flex and Pro
+    Bundle, 3h/month on Enterprise) rather than as an availability commitment. No uptime target,
+    credit schedule or response-time SLA is published.
+status_page:
+  published: false
+  probed:
+    - url: https://status.chemius.net/
+      status: 000
+      note: DNS does not resolve.
+    - url: https://www.chemius.net/status
+      status: 404
+  in_app_only:
+    surface: https://my.chemius.net/
+    note: >-
+      The application shell carries an in-app maintenance banner ("Server will be down on {date}
+      for {duration}"), so planned downtime IS announced — but only to signed-in users inside the
+      Angular app, never at a public URL a monitor or an agent could poll. No StatusPage pointer is
+      wired, because there is no public status page.
+  availability_incident_observed:
+    url: https://chemius.net/
+    status: 503
+    observed: '2026-09-05'
+    note: >-
+      The apex chemius.net answered 503 with a maintenance page reading "app.chemius.net /
+      app.allchemist.net is temporarily..." throughout this pass, while www.chemius.net served 200.
+      Recorded as observed, not diagnosed.
+commercial_change:
+  - date: '2026-01-01'
+    kind: terms-and-pricing
+    evidence: https://www.chemius.net/our-pricing/
+    note: >-
+      The pricing page states "New Terms of Use and updated pricing will apply from 1 January
+      2026." This is the only dated forward-looking change notice Chemius publishes.
+deprecated_operations: []
+deprecated_operations_note: No machine-readable contract exists, so no deprecated operation can be derived.

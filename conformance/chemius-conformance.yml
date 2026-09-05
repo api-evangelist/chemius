@@ -1,0 +1,132 @@
+specification: API Commons Conformance
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.chemius.net/ , https://www.chemius.net/api/ ,
+  https://www.chemius.net/our-pricing/ , https://www.chemius.net/privacy-policy/
+description: >-
+  Standards and compliance posture for Chemius, read from the provider's own public pages. Chemius
+  publishes no machine-readable API contract, so NONE of the entries below is contract-declared:
+  every one is a prose claim on a marketing, pricing or policy page. That distinction is recorded
+  per entry as contract_declared, because a regulatory framework a product implements internally is
+  a different fact from a standard its API declares on the wire.
+contract_declared_any: false
+contract_declared_note: >-
+  No OpenAPI, AsyncAPI, GraphQL SDL, WSDL, .proto or JSON Schema is published by Chemius on any
+  host, so there is no spec location to point evidence at. If Chemius publishes a reference, the
+  domain-standard signature to look for is the UFI/PCN submission shape (ECHA PCN XML / IUCLID),
+  which is the one machine-readable interchange format in this market.
+conformance:
+  - id: clp-1272-2008
+    name: CLP Regulation (EC) No 1272/2008
+    category: domain-standard
+    domain: chemical-regulatory
+    conforms: true
+    contract_declared: false
+    evidence: https://www.chemius.net/our-pricing/
+    note: >-
+      "CLP regulatory area included" is a named, priced feature on every plan; the EU CLP Region is
+      the shipped regulatory module. Hazard/precautionary statements, pictograms and signal word are
+      the payload the CLP data API and Label API move.
+  - id: reach-1907-2006
+    name: REACH Regulation (EC) No 1907/2006
+    category: domain-standard
+    domain: chemical-regulatory
+    conforms: true
+    contract_declared: false
+    evidence: https://www.chemius.net/safety-data-sheet-api/
+    note: >-
+      The SDS API page states the API "streamlines compliance with regulations such as REACH,
+      ensuring customers always receive the latest safety information" — the annual re-notification
+      duty is the behaviour the API automates.
+  - id: ghs
+    name: UN GHS (Globally Harmonized System)
+    category: domain-standard
+    domain: chemical-regulatory
+    conforms: partial
+    contract_declared: false
+    evidence: https://www.chemius.net/api/
+    note: >-
+      The site nav lists "GHS Region (Coming Soon)" alongside a shipped EU CLP Region, so GHS
+      outside the EU CLP implementation is announced but not yet available. Recorded as partial
+      rather than true.
+  - id: us-osha-hazcom
+    name: US OSHA Hazard Communication Standard (29 CFR 1910.1200)
+    category: domain-standard
+    domain: chemical-regulatory
+    conforms: false
+    contract_declared: false
+    evidence: https://www.chemius.net/api/
+    note: >-
+      Listed on the site as "US OSHA Region (Coming Soon)". The catalog description previously
+      asserted OSHA/GHS support outright; the provider's own nav says it is not shipped yet.
+  - id: adr
+    name: ADR — European Agreement concerning the International Carriage of Dangerous Goods by Road
+    category: domain-standard
+    domain: dangerous-goods-transport
+    conforms: true
+    contract_declared: false
+    evidence: https://www.chemius.net/adr-api/
+    note: >-
+      The ADR API receives a product list and quantities from an ERP, calculates ADR points and
+      returns a compliant transport document as PDF. ADR rule updates are applied inside Chemius so
+      the caller's ERP is not versioned against them.
+  - id: ufi-pcn
+    name: UFI / Poison Centre Notification (CLP Annex VIII)
+    category: domain-standard
+    domain: chemical-regulatory
+    conforms: true
+    contract_declared: false
+    evidence: https://www.chemius.net/our-pricing/
+    note: >-
+      The UFI and Poison Centre Notification tool is a shipped module, unlimited on Pro Bundle
+      yearly. No API is sold for it — PCN is UI-only, which is a real gap between the module list
+      and the API list.
+  - id: iso-iec-27001
+    name: DIN ISO/IEC 27001
+    category: security-certification
+    conforms: claimed
+    contract_declared: false
+    evidence: https://www.chemius.net/
+    note: >-
+      The homepage "Enterprise-Grade Security" panel claims a "DIN ISO/IEC 27001 certified German
+      data center". Read precisely, this asserts the HOSTING FACILITY is certified, not that
+      Chemius or BENS Consulting hold the certification. No certificate, audit report, trust
+      center or Statement of Applicability is published, so this is recorded as claimed, not
+      verified.
+  - id: gdpr
+    name: GDPR — Regulation (EU) 2016/679
+    category: privacy-regulation
+    conforms: true
+    contract_declared: false
+    evidence: https://www.chemius.net/privacy-policy/
+    note: >-
+      The Personal Data Protection Policy is written against the GDPR and the Slovenian Personal
+      Data Protection Act, names a designated data protection officer at BENS Consulting d.o.o.,
+      and states a breach-notification duty. Chemius is a Slovenian company (Trzin, SI) operating
+      in the EU.
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    category: api-convention
+    conforms: unknown
+    contract_declared: false
+    evidence: https://www.chemius.net/api/
+    note: No error format is published; the reference is only supplied after a sales call.
+  - id: oauth2
+    name: OAuth 2.0
+    category: api-convention
+    conforms: unknown
+    contract_declared: false
+    evidence: https://www.chemius.net/.well-known/oauth-authorization-server
+    note: >-
+      Probed 2026-09-05, HTTP 404 on all four hosts. No OAuth authorization-server or
+      protected-resource metadata is served anywhere in the estate.
+summary:
+  entries: 10
+  domain_standards: 6
+  contract_declared: 0
+  certifications_claimed: 1
+  certifications_verified: 0

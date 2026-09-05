@@ -4,129 +4,45 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Chemius
 providerId: chemius
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+# Provenance: the 2026-05-04 bulk sweep wrote a scaffold here that declared X-RateLimit-* headers,
+# a 429 throttle code and per-tier request quotas. NONE of that was ever published by Chemius; it
+# was invented default content (roadmap#35). Replaced on 2026-09-05 with the measured finding after
+# reading every public Chemius API page and the pricing comparison table. Method upgraded to
+# searched because the absence was established by reading the provider's own pages, not assumed.
+method: searched
+modified: '2026-09-05'
+verified: '2026-09-05'
+limit_count: 0
+headers_published: false
+headers_note: >-
+  Chemius publishes no rate-limit response headers, no throttle status code and no documented
+  quota of any kind. The seven Chemius APIs are sold as flat monthly add-ons (EUR 100-300/month
+  each) with no call allowance stated anywhere on the pricing page or on any of the per-API pages.
+  An integrator cannot learn a budget before buying, and an agent gets no runtime signal.
+sources:
+  - url: https://www.chemius.net/our-pricing/
+    status: 200
+    note: Full plan comparison table, including the seven-row "APIs" section. No request quota, no throttle policy.
+  - url: https://www.chemius.net/api/
+    status: 200
+    note: API landing page. Describes what each API does; states no limits.
+  - url: https://www.chemius.net/safety-data-sheet-api/
+    status: 200
+  - url: https://www.chemius.net/erp-api/
+    status: 200
+  - url: https://www.chemius.net/adr-api/
+    status: 200
+gate: >-
+  Every Chemius API page ends at "Book a call & ask for the API documentation", so any published
+  rate limits would live in the reference handed over after a sales call. Nothing rate-limit
+  related is reachable without that call.
 tags:
-  - ADR
-  - AI
-  - Chemicals
-  - Chemists
-  - Compliance
-  - GHS
-  - Hazard Communication
-  - Labels
-  - REACH
-  - Regulatory
-  - Research
-  - Safety Data Sheets
-  - SaaS
-  - SDS
-  - TDS
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Chemius API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Chemius Safety Data Sheet API
-      - Chemius Technical Data Sheet API
-      - Chemius ADR Transport API
-      - Chemius ERP Integration API
-      - Chemius Label API
-      - Chemius Web Shop API
-      - Chemius PDF API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Chemius Safety Data Sheet API
-      - Chemius Technical Data Sheet API
-      - Chemius ADR Transport API
-      - Chemius ERP Integration API
-      - Chemius Label API
-      - Chemius Web Shop API
-      - Chemius PDF API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Chemius Safety Data Sheet API
-      - Chemius Technical Data Sheet API
-      - Chemius ADR Transport API
-      - Chemius ERP Integration API
-      - Chemius Label API
-      - Chemius Web Shop API
-      - Chemius PDF API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Chemius Safety Data Sheet API
-      - Chemius Technical Data Sheet API
-      - Chemius ADR Transport API
-      - Chemius ERP Integration API
-      - Chemius Label API
-      - Chemius Web Shop API
-      - Chemius PDF API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Chemius Safety Data Sheet API
-      - Chemius Technical Data Sheet API
-      - Chemius ADR Transport API
-      - Chemius ERP Integration API
-      - Chemius Label API
-      - Chemius Web Shop API
-      - Chemius PDF API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - Chemicals
+  - Compliance
+  - Safety Data Sheets
+description: >-
+  Measured record of Chemius rate limits: there are none published. Recorded as an honest zero
+  rather than omitted, so the absence is countable and so the earlier scaffold values cannot be
+  mistaken for provider-published limits.
+limits: []

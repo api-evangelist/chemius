@@ -4,169 +4,211 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Chemius
 providerId: chemius
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+# Provenance: originally a scaffold written by the API Evangelist bulk sweep dated 2026-05-04,
+# whose tier names, request quotas and rate values were invented defaults. Replaced wholesale on
+# 2026-09-05 with the tiers, prices and per-API add-on fees read from the live pricing page
+# https://www.chemius.net/our-pricing/ (HTTP 200). Method upgraded generated -> searched.
+method: searched
+modified: '2026-09-05'
+verified: '2026-09-05'
+plan_count: 4
+sources:
+  - https://www.chemius.net/our-pricing/
+  - https://www.chemius.net/api/
 tags:
-  - ADR
-  - AI
   - Chemicals
-  - Chemists
   - Compliance
-  - GHS
-  - Hazard Communication
-  - Labels
-  - REACH
-  - Regulatory
-  - Research
   - Safety Data Sheets
   - SaaS
-  - SDS
-  - TDS
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Pricing
+description: >-
+  Chemius sells a four-tier seat-and-feature subscription (Basic free, Pro Flex, Pro Bundle,
+  Enterprise) priced in EUR, monthly or yearly with roughly an 8% yearly saving. API access is not
+  part of the base subscription: each of the seven Chemius APIs is a separately priced monthly
+  add-on layered on a paid plan, and some are bundled at no extra fee in the higher tiers. There is
+  no request-metered or usage-based API pricing published anywhere on the site — the add-on fee is
+  flat per month regardless of call volume, and no call quota is stated. Prices below are list
+  prices published on 2026-09-05; the pricing page notes new Terms of Use and updated pricing take
+  effect 1 January 2026.
+listPrices:
+  currency: EUR
+  billing_periods: [monthly, yearly]
+  yearly_discount: ~8%
+  tiers:
+    - {name: Basic, monthly: '0', yearly: '0', editors: 1, products: 75, sds: 3}
+    - {name: Pro Flex, monthly: '150', yearly_total: '1650', yearly_list: '1800', editors: 5}
+    - {name: Pro Bundle, monthly: '1000', yearly_total: '11000', yearly_list: '12000', editors: 10}
+    - {name: Enterprise, monthly: '2500', yearly_total: '27500', yearly_list: '30000', editors: 20}
+api_addons:
+  note: >-
+    Flat monthly fee per API, added on top of a paid plan. "included" means the API carries no
+    additional fee in that tier. Read from the "APIs" section of the plan comparison table.
+  currency: EUR
+  period: month
+  addons:
+    - api: SDS API
+      basic: unavailable
+      pro_flex: '100'
+      pro_bundle: '100'
+      enterprise: included
+    - api: TDS API
+      basic: unavailable
+      pro_flex: '250'
+      pro_bundle: '250'
+      enterprise: included
+    - api: ADR API
+      basic: unavailable
+      pro_flex: '300'
+      pro_bundle: included
+      enterprise: included
+    - api: WEBshop API
+      basic: unavailable
+      pro_flex: '100'
+      pro_bundle: '100'
+      enterprise: included
+    - api: Label API
+      basic: unavailable
+      pro_flex: '250'
+      pro_bundle: included
+      enterprise: included
+    - api: ERP API
+      basic: unavailable
+      pro_flex: '250'
+      pro_bundle: '250'
+      enterprise: included
+    - api: PDF API
+      basic: unavailable
+      pro_flex: '225'
+      pro_bundle: '225'
+      enterprise: included
+professional_services:
+  - name: Chemius Pro Mentoring Package
+    price: '500'
+    currency: EUR
+    unit: 3 hours
+    note: Available on top of any plan, including Basic.
+  - name: Additional expert mentoring & consulting
+    price: '240'
+    currency: EUR
+    unit: hour
+    note: Pay-as-you-go, no commitment.
+  - name: Additional user
+    price: '49'
+    currency: EUR
+    unit: user/month
+    note: Applies on Pro Flex, Pro Bundle and Enterprise beyond the included editor seats.
 plans:
-  - id: chemius-free
-    name: Free
+  - id: chemius-basic
+    name: Basic
     type: freemium
-    description: Free entry tier for the Chemius API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: >-
+      Free entry tier with no card and no expiry. One subscription editor, up to 75 products,
+      up to 3 SDSs, EU CLP regulatory area, self-serve knowledge base. No API add-on is
+      available on this tier.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Subscription editors
+        name: editors
         type: quota
-        metric: requests
-        limit: 1000
+        metric: users
+        limit: 1
         timeFrame: month
-        geo: global
-        domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
+      - label: Products
+        name: products
+        type: quota
+        metric: products
+        limit: 75
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Safety Data Sheets
+        name: sds
+        type: quota
+        metric: documents
+        limit: 3
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: chemius-pro-flex
+    name: Pro Flex
+    type: subscription
+    description: >-
+      EUR 150 per month or EUR 1,650 per year. Five subscription editors, SDS authoring in 33+
+      languages, one company brand, one hour a month of technical support, video learning package.
+      All seven APIs are available as paid monthly add-ons.
+    entries:
+      - label: Monthly subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        unit: 1
+        price: '150.00'
+        userMultiplied: false
+      - label: Subscription editors
+        name: editors
+        type: quota
+        metric: users
+        limit: 5
+        timeFrame: month
+        unit: 1
+        price: '150.00'
+        userMultiplied: false
+  - id: chemius-pro-bundle
+    name: Pro Bundle
+    type: subscription
+    description: >-
+      EUR 1,000 per month or EUR 11,000 per year. Ten subscription editors, regulatory dashboard,
+      unlimited PCN module (yearly only), ADR API and Label API included at no extra fee, one hour
+      a month of chemical consultancy.
+    entries:
+      - label: Monthly subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        unit: 1
+        price: '1000.00'
+        userMultiplied: false
+      - label: Subscription editors
+        name: editors
+        type: quota
+        metric: users
         limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Chemius Safety Data Sheet API
-      - name: Chemius Technical Data Sheet API
-      - name: Chemius ADR Transport API
-      - name: Chemius ERP Integration API
-      - name: Chemius Label API
-      - name: Chemius Web Shop API
-      - name: Chemius PDF API
-  - id: chemius-pro
-    name: Professional
-    type: paid
-    description: Production tier for Chemius. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
         timeFrame: month
-        geo: global
-        domains: []
         unit: 1
-        price: TBD
+        price: '1000.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Chemius Safety Data Sheet API
-      - name: Chemius Technical Data Sheet API
-      - name: Chemius ADR Transport API
-      - name: Chemius ERP Integration API
-      - name: Chemius Label API
-      - name: Chemius Web Shop API
-      - name: Chemius PDF API
   - id: chemius-enterprise
     name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Chemius. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    type: subscription
+    description: >-
+      EUR 2,500 per month or EUR 27,500 per year. Twenty subscription editors, custom add-ons,
+      multi-company brands, the complete API suite included, three hours a month of chemical
+      consultancy and three hours a month of technical support. The pricing page lists the price
+      but routes purchase through "Please contact us".
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
+      - label: Monthly subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
         timeFrame: month
-        geo: configurable
-        domains: []
         unit: 1
-        price: custom
+        price: '2500.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
+      - label: Subscription editors
+        name: editors
+        type: quota
+        metric: users
+        limit: 20
+        timeFrame: month
         unit: 1
-        price: custom
+        price: '2500.00'
         userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Chemius Safety Data Sheet API
-      - name: Chemius Technical Data Sheet API
-      - name: Chemius ADR Transport API
-      - name: Chemius ERP Integration API
-      - name: Chemius Label API
-      - name: Chemius Web Shop API
-      - name: Chemius PDF API
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com

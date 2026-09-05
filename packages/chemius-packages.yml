@@ -1,0 +1,49 @@
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org, rubygems.org, crates.io, api.github.com
+  repository search, and every Chemius API page on www.chemius.net
+description: >-
+  Client-library census for Chemius. Every public registry and the provider's
+  own API pages were searched; Chemius publishes no first-party SDK, client
+  library, or package in any language. Integration is described in the docs as
+  a direct ERP/CRM/web-shop HTTP call, with the API reference supplied only
+  after a sales call.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_searched:
+  - registry: npm
+    query: https://registry.npmjs.org/-/v1/search?text=chemius
+    results: 0
+    checked: '2026-09-05'
+  - registry: pypi
+    query: https://pypi.org/pypi/chemius/json
+    results: 0
+    status: 404
+    checked: '2026-09-05'
+  - registry: rubygems
+    query: https://rubygems.org/api/v1/search.json?query=chemius
+    results: 0
+    checked: '2026-09-05'
+  - registry: crates.io
+    query: https://crates.io/api/v1/crates?q=chemius
+    results: 0
+    checked: '2026-09-05'
+  - registry: github
+    query: https://api.github.com/search/repositories?q=chemius
+    results: 0
+    note: >-
+      Three unrelated repositories match the string; none belongs to Chemius or
+      BENS Consulting. github.com/Chemius exists as an empty personal account
+      (created 2024-03-22, 0 public repos, no name, company or blog set) and
+      cannot be attributed to the company, so no GitHubOrganization pointer is
+      wired.
+    checked: '2026-09-05'
+note: >-
+  No SDKs pointer is wired in apis.yml. sdk_count is genuinely zero for this
+  provider; recording it as an honest zero is the finding.

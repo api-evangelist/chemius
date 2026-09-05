@@ -8,9 +8,13 @@ description: >-
   exposes an API suite covering SDS, TDS, ADR transport documentation, ERP
   integration, labels, web shop product data, and PDF generation, and offers
   AI-assisted authoring through the Chemius AI SDS assistant. Chemius is
-  hosted in DIN ISO/IEC 27001-certified German data centers and supports
-  CLP 1272/2008, REACH 1907/2006, detergents, aerosols, and US OSHA / GHS
-  regulatory frameworks.
+  hosted in a data center the company describes as DIN ISO/IEC 27001-certified,
+  and ships the EU CLP 1272/2008 regulatory region alongside REACH 1907/2006,
+  detergents, aerosols, ADR and UFI/PCN support. US OSHA and a general GHS
+  region are announced on the site as "Coming Soon" rather than shipped. Chemius
+  sells seven named APIs as separately priced monthly add-ons but publishes no
+  reference for any of them: every API page ends at "Book a call & ask for the
+  API documentation".
 type: Index
 deliveryModel:
   model: saas
@@ -73,7 +77,7 @@ tags_raw:
   - SDS
   - TDS
 created: '2025-03-01'
-modified: '2026-04-23'
+modified: '2026-09-05'
 specificationVersion: '0.23'
 apis:
   - aid: chemius:sds-api
@@ -84,28 +88,28 @@ apis:
       generation aligned with CLP 1272/2008, REACH 1907/2006, and GHS
       formats.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/safety-data-sheet-api/
     tags:
       - Compliance
       - SDS
       - Safety Data Sheets
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/safety-data-sheet-api/
   - aid: chemius:tds-api
     name: Chemius Technical Data Sheet API
     description: >-
       API for generating and retrieving Technical Data Sheets (TDS) for
       chemical products, including version control and translation.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/technical-data-sheet-api-tds-api/
     tags:
       - Compliance
       - TDS
       - Technical Data Sheets
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/technical-data-sheet-api-tds-api/
   - aid: chemius:adr-api
     name: Chemius ADR Transport API
     description: >-
@@ -113,14 +117,14 @@ apis:
       International Carriage of Dangerous Goods by Road) transport
       documentation for chemical shipments.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/adr-api/
     tags:
       - ADR
       - Transport
       - Compliance
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/adr-api/
   - aid: chemius:erp-api
     name: Chemius ERP Integration API
     description: >-
@@ -128,53 +132,53 @@ apis:
       enterprise ERP systems for synchronized chemical product
       information.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/erp-api/
     tags:
       - ERP
       - Integration
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/erp-api/
   - aid: chemius:label-api
     name: Chemius Label API
     description: >-
       API for generating regulatory-compliant chemical product labels
       with QR codes, hazard pictograms, and multilingual content.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/label-api/
     tags:
       - Labels
       - Compliance
       - GHS
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/label-api/
   - aid: chemius:web-shop-api
     name: Chemius Web Shop API
     description: >-
       API exposing chemical product data, SDSs, and TDSs for embedding
       in e-commerce experiences and customer-facing web shops.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/web-shop-api/
     tags:
       - E-Commerce
       - Web Shop
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/web-shop-api/
   - aid: chemius:pdf-api
     name: Chemius PDF API
     description: >-
       API for rendering Chemius SDSs, TDSs, labels, and other compliance
       documents as PDF artifacts for distribution and archival.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.chemius.net/chemius-api/
+    humanURL: https://www.chemius.net/pdf-api/
     tags:
       - PDF
       - Documents
     properties:
       - type: Documentation
-        url: https://www.chemius.net/chemius-api/
+        url: https://www.chemius.net/pdf-api/
 common:
   - type: DomainSecurity
     url: security/chemius-domain-security.yml
@@ -183,13 +187,43 @@ common:
   - type: Website
     url: https://www.chemius.net/
   - type: Documentation
-    url: https://www.chemius.net/chemius-api/
+    url: https://www.chemius.net/api/
   - type: Pricing
-    url: https://www.chemius.net/pricing/
+    url: https://www.chemius.net/our-pricing/
   - type: Contact
-    url: https://www.chemius.net/contact/
+    url: https://www.chemius.net/about-us/
+  - type: Support
+    url: https://www.chemius.net/help-center/
+  - type: GettingStarted
+    url: https://www.chemius.net/efficient-safety-data-sheets-start-here/
+  - type: SignUp
+    url: https://my.chemius.net/register
+  - type: Login
+    url: https://my.chemius.net/login
+  - type: TermsOfService
+    url: https://www.chemius.net/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.chemius.net/privacy-policy/
   - type: JSONLD
     url: json-ld/chemius-context.jsonld
+  - type: Plans
+    url: plans/chemius-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/chemius-rate-limits.yml
+  - type: FinOps
+    url: finops/chemius-finops.yml
+  - type: Conformance
+    url: conformance/chemius-conformance.yml
+  - type: Compliance
+    url: conformance/chemius-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/chemius-lifecycle.yml
+  - type: Conventions
+    url: conventions/chemius-conventions.yml
+  - type: LLMsTxt
+    url: llms/chemius-llms.txt
+  - type: X-MCPServerCandidate
+    url: mcp/chemius-mcp.yml
   - name: Features
     type: Features
     data:
@@ -222,13 +256,38 @@ common:
     data:
       - name: CLP 1272/2008
       - name: REACH 1907/2006
-      - name: GHS
       - name: ADR
-      - name: US OSHA Hazard Communication
-      - name: UFI
-      - name: ISO/IEC 27001
-  - url: https://www.chemius.net/blog
+      - name: UFI / PCN (CLP Annex VIII)
+      - name: Detergents Regulation
+      - name: Aerosols Regulation
+      - name: GDPR (EU) 2016/679
+  - url: https://www.chemius.net/blog/
     type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v3
+x-coverage:
+  state: gated
+  reason: sales-gate
+  detail: >-
+    Chemius markets and separately prices seven APIs (SDS, TDS, ADR, Web Shop, Label, ERP, PDF at
+    EUR 100-300 per month each) but publishes a reference for none of them - every per-API page
+    ends at the call-to-action "Book a call & ask for the API documentation", so no contract, base
+    URL, authentication scheme, parameter or error format is reachable without a sales conversation.
+  evidence:
+    - url: https://www.chemius.net/safety-data-sheet-api/
+      status: 200
+    - url: https://www.chemius.net/api/
+      status: 200
+    - url: https://www.chemius.net/openapi.json
+      status: 404
+    - url: https://www.chemius.net/.well-known/api-catalog
+      status: 404
+    - url: https://my.chemius.net/.well-known/agent-card.json
+      status: 404
+  checked: '2026-09-05'

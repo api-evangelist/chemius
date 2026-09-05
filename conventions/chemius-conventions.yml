@@ -1,0 +1,129 @@
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: Chemius
+providerId: chemius
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.chemius.net/api/ and the seven per-API pages on www.chemius.net;
+  https://www.chemius.net/chemius-api-integration-example/
+description: >-
+  Cross-cutting runtime semantics for the Chemius API estate. Almost every field here is
+  undocumented, and that is the finding rather than a gap in this pass: Chemius markets seven
+  priced APIs and publishes no reference for any of them. What IS documented is the integration
+  SHAPE — permalink-based SDS delivery, a daily ERP poll for changed documents, and synchronous
+  document generation — which is enough to characterise the interaction model without inventing a
+  contract.
+documentation_gate:
+  public_reference: false
+  gate: '"Book a call & ask for the API documentation" on every per-API page'
+  evidence: https://www.chemius.net/safety-data-sheet-api/
+  consequence: >-
+    Every "undocumented" below means undocumented TO THE PUBLIC. A customer who completes the sales
+    call may receive a reference that answers these questions; a machine, an evaluator or an agent
+    cannot.
+auth_style:
+  documented: false
+  see: authentication/chemius-authentication.yml
+pagination:
+  documented: false
+  style: unknown
+  note: >-
+    The SDS API is documented as able to "Retrieve a list of SDSs (Chemius permalinks) ... based on
+    criteria", so a collection endpoint exists and pagination is a real question the public docs do
+    not answer.
+filtering:
+  documented: partial
+  note: >-
+    List retrieval is stated to be "based on criteria" and the daily ERP poll is stated to "identify
+    which products have had SDS changes", implying a changed-since filter. The parameter names are
+    not published.
+versioning:
+  documented: false
+  see: lifecycle/chemius-lifecycle.yml
+error_envelope:
+  documented: false
+  format: unknown
+  rfc9457: unknown
+rate_limit_signaling:
+  documented: false
+  see: rate-limits/chemius-rate-limits.yml
+request_id_tracing:
+  documented: false
+metadata_fields:
+  documented: false
+field_expansion:
+  documented: false
+content_negotiation:
+  documented: partial
+  note: >-
+    The TDS API is documented as returning section layout plus formatted content and the Chemius
+    TDS style, "while allowing it to be overridden by the style of the integrating website", so a
+    styled/structured response variant exists. The PDF API returns PDF; the ADR API returns a
+    ready-to-print transport document in PDF.
+interaction_model:
+  documented: true
+  evidence: https://www.chemius.net/api/
+  patterns:
+    - name: Permalink indirection
+      description: >-
+        The SDS API returns a permanent Chemius permalink rather than a document body. The ERP or
+        CRM stores the link once; when the SDS is revised the link resolves to the new version with
+        no write back into the caller's system. This is the single most important convention in the
+        estate and it is well documented in prose.
+    - name: Daily change poll
+      description: >-
+        "For updated SDSs, the ERP 'calls' Chemius daily to identify which products have had SDS
+        changes." Change propagation is pull-based on a daily cadence, not push. There are no
+        webhooks and no event surface.
+    - name: Synchronous document generation
+      description: >-
+        The ADR API receives a product list with quantities, calculates ADR points server-side and
+        returns a compliant transport document. The PDF API renders current SDS/TDS/Safety
+        Instruction PDFs on demand.
+    - name: Server-side regulatory logic
+      description: >-
+        ADR and CLP rule changes are applied inside Chemius, explicitly so the caller's ERP does not
+        have to be updated. The caller holds no rule version.
+idempotency:
+  documented: false
+  mechanism: none
+  header: null
+  coverage: none
+  scope: []
+  note: >-
+    coverage is `none` in the sense the band gate reads it: no replay-protection mechanism is
+    available to a caller, because none is published. This is a documented absence, not a verified
+    one — the reference handed over after a sales call was not obtainable in this pass, so it is
+    possible an unpublished mechanism exists. It is not possible for a caller to USE one they
+    cannot read about.
+dry_run_mode:
+  documented: false
+  coverage: none
+reversibility:
+  grade: none
+  documented: false
+  write_surface_present: true
+  write_surface_note: >-
+    This is not a read-only API estate, so reversibility is not `na`. The ADR API generates a
+    transport document that accompanies a real dangerous-goods shipment, the Label API delivers
+    label content to labelling software or an ERP, and the ERP API writes hazard and transport data
+    into the caller's ERP. Those are consequential actions in the physical world.
+  reversal_operations: []
+  windows: []
+  note: >-
+    No cancel, void, reverse, regenerate-and-supersede or restore operation is published for any
+    Chemius API, and no window is stated for any of them. NOTHING is asserted here about whether
+    such an operation exists — an invented window on a dangerous-goods transport document is
+    precisely the error that could cost a user real money. An agent asked to generate an ADR
+    transport document through Chemius cannot learn from any public source whether that action can
+    be taken back.
+  what_would_raise_this: >-
+    A documented supersede/void operation for a generated ADR transport document, with the window
+    inside which it applies, would take this to `verified`. Publishing the reversal path alone
+    would take it to `documented`.
+cross_links:
+  authentication: authentication/chemius-authentication.yml
+  rate_limits: rate-limits/chemius-rate-limits.yml
+  lifecycle: lifecycle/chemius-lifecycle.yml
+  conformance: conformance/chemius-conformance.yml

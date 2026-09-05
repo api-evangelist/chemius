@@ -1,0 +1,102 @@
+# Chemius
+
+> Chemius is a cloud chemical-compliance platform from BENS Consulting d.o.o. (Trzin, Slovenia)
+> that authors Safety Data Sheets, Technical Data Sheets, regulatory labels and ADR transport
+> documents in 38 languages, and sells seven named APIs that push that content into ERP, CRM, PIM
+> and e-commerce systems.
+
+generated: 2026-09-05
+method: generated
+source: apis.yml and the repository artifacts at github.com/api-evangelist/chemius, built from
+  pages fetched from www.chemius.net on 2026-09-05. Chemius serves no llms.txt of its own
+  (https://www.chemius.net/llms.txt -> HTTP 404), so this file is written BY API Evangelist ABOUT
+  Chemius. It is not a provider-published document.
+
+## What an agent should know first
+
+Chemius markets seven APIs and publishes a reference for none of them. Every per-API page ends at
+"Book a call & ask for the API documentation". There is no OpenAPI, no AsyncAPI, no GraphQL SDL, no
+WSDL, no Postman collection, no SDK in any registry, no MCP server, no agent card, and no
+/.well-known/ document on any Chemius host. An agent cannot call a Chemius API today, and cannot
+learn how to from any public source. Access is a commercial motion: buy a paid plan, request the
+add-on, take the call.
+
+## The APIs
+
+- Safety Data Sheet API (SDS API): https://www.chemius.net/safety-data-sheet-api/
+  Returns permanent Chemius permalinks for SDSs so an ERP/CRM stores a link once instead of a PDF.
+  A daily poll identifies which products have changed SDSs, driving the REACH customer
+  re-notification duty.
+- Technical Data Sheet API (TDS API): https://www.chemius.net/technical-data-sheet-api-tds-api/
+  Retrieves TDS sections by purpose and language, returning layout plus formatted content and rich
+  media, with Chemius styling that the integrating site may override.
+- ADR API: https://www.chemius.net/adr-api/
+  Receives a product list and quantities, calculates ADR points server-side and returns a
+  ready-to-print dangerous-goods transport document as PDF. ADR rule changes are applied inside
+  Chemius, so the caller's ERP holds no rule version.
+- Web Shop API: https://www.chemius.net/web-shop-api/
+  Pushes the mandatory hazard text a web shop must display for each hazardous chemical.
+- Label API: https://www.chemius.net/label-api/
+  Delivers structured multilingual labelling content to labelling software or an ERP.
+- ERP API: https://www.chemius.net/erp-api/
+  Synchronises hazard data (H and P phrases, pictograms), physical/chemical properties and
+  transport data (UN numbers, labels, classes) into an ERP.
+- PDF API: https://www.chemius.net/pdf-api/
+  Generates and serves always-current PDF renderings of SDS, TDS and Safety Instructions.
+
+## Commercial terms
+
+- Pricing: https://www.chemius.net/our-pricing/
+- Four plans in EUR: Basic (free, 1 editor, 75 products, 3 SDSs), Pro Flex (150/month or
+  1,650/year, 5 editors), Pro Bundle (1,000/month or 11,000/year, 10 editors), Enterprise
+  (2,500/month or 27,500/year, 20 editors).
+- APIs are separately priced monthly add-ons on top of a paid plan: SDS API 100, WEBshop API 100,
+  PDF API 225, TDS API 250, Label API 250, ERP API 250, ADR API 300 (EUR/month). Pro Bundle
+  includes ADR and Label at no extra fee; Enterprise includes the full suite. No API add-on is
+  available on the free Basic plan.
+- Pricing is flat per month. No request quota, call allowance or overage is published anywhere.
+- New Terms of Use and updated pricing apply from 1 January 2026.
+
+## Runtime semantics
+
+- Authentication: undocumented publicly. No key, token, OAuth or mTLS scheme is named.
+- Rate limits: none published. No X-RateLimit-*/RateLimit-* headers, no throttle status code.
+- Idempotency: no mechanism published (coverage: none).
+- Reversibility: no reversal operation and no window published for any write surface, including the
+  generated ADR transport document. An agent cannot learn whether that action can be undone.
+- Events: no webhooks and no AsyncAPI. Change propagation is a daily pull by the caller.
+- Errors: no error catalogue or envelope published.
+- Status: no public status page. Planned downtime is announced only inside the signed-in app.
+
+## Standards and compliance
+
+- Shipped: EU CLP 1272/2008 regulatory region, REACH 1907/2006, detergents and aerosols
+  regulations, ADR, UFI/PCN under CLP Annex VIII.
+- Announced but not shipped: US OSHA region and a general GHS region are both labelled
+  "Coming Soon" / "in the making" on the provider's own navigation.
+- Security: the homepage claims a "DIN ISO/IEC 27001 certified German data center" — a claim about
+  the hosting facility, not a Chemius certification. No certificate or trust center is published.
+- Privacy: GDPR-based policy with a designated data protection officer.
+  https://www.chemius.net/privacy-policy/
+
+## Where a human goes
+
+- API overview: https://www.chemius.net/api/
+- Live integration example built with the APIs: https://www.chemius.net/chemius-api-integration-example/
+- Help center: https://www.chemius.net/help-center/
+- Blog: https://www.chemius.net/blog/
+- Sign up (free, self-serve): https://my.chemius.net/register
+- Sign in: https://my.chemius.net/login
+- Terms of use: https://www.chemius.net/terms-of-use/
+- Company: https://www.chemius.net/about-us/ — Chemius is a registered trademark of BENS Consulting
+  d.o.o., Spruha 19, 1236 Trzin, Slovenia. support@chemius.net
+
+## What is NOT available
+
+- No OpenAPI/Swagger, AsyncAPI, GraphQL SDL, WSDL or .proto on any host.
+- No SDK or client library on npm, PyPI, RubyGems, crates.io, Maven Central or NuGet.
+- No first-party GitHub organization. (github.com/Chemius is an empty personal account with zero
+  repositories and cannot be attributed to the company.)
+- No MCP server, hosted or stdio. No A2A agent card. No CLI.
+- No /.well-known/security.txt, api-catalog, openid-configuration or oauth-authorization-server on
+  www.chemius.net, chemius.net, my.chemius.net or app.chemius.net — all probed 2026-09-05.
