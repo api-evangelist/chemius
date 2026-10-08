@@ -212,3 +212,51 @@ plans:
         unit: 1
         price: '2500.00'
         userMultiplied: false
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - object
+  - period
+  - seat
+  plans:
+  - name: Basic
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - object
+    - other
+    - seat
+    periods:
+    - month
+  - name: Pro Flex
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    - seat
+    periods:
+    - month
+  - name: Pro Bundle
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    - seat
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    - seat
+    periods:
+    - month
